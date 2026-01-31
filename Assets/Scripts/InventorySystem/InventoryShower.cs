@@ -1,7 +1,7 @@
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Jobs;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class InventoryShower : MonoBehaviour
 {
@@ -27,31 +27,28 @@ public class InventoryShower : MonoBehaviour
     }
 
     [Button(enabledMode: EButtonEnableMode.Always)]
-    public void ShowInventory()
+    public List<GameObject> ShowInventory()
     {
+        List<GameObject> spawnedSlots = new List<GameObject>();
+
         if (_inventorySlotParent.childCount > 1) ClearInventory();
 
         SetUp();
 
         for (int i = 0; i < _inventoryWidth * _inventoryHeight; i++)
         {
-            Instantiate(_slotUI, _inventorySlotParent);
+            spawnedSlots.Add(Instantiate(_slotUI, _inventorySlotParent));
         }
+
+        return spawnedSlots;
     }
 
-    public void ShowInventory(int width, int height)
+    public List<GameObject> ShowInventory(int width, int height)
     {
         _inventoryWidth = width;
         _inventoryHeight = height;
 
-        if (_inventorySlotParent.childCount > 1) ClearInventory();
-
-        SetUp();
-
-        for (int i = 0; i < _inventoryWidth * _inventoryHeight; i++)
-        {
-            Instantiate(_slotUI, _inventorySlotParent);
-        }
+        return ShowInventory();
     }
 
     [Button(enabledMode: EButtonEnableMode.Always)]

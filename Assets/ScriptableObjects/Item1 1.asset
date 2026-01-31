@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 751fb7093af307e4d8ed1e536d5084da, type: 3}
-  m_Name: Item1
+  m_Name: Item1 1
   m_EditorClassIdentifier: Assembly-CSharp::ItemInfo
-  <DisplayName>k__BackingField: Item1
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 0d3e6846583d27f49a9c8e68e183d0cd, type: 3}
+  <DisplayName>k__BackingField: Item2
+  <Sprite>k__BackingField: {fileID: 21300000, guid: f36c23f926db5184d8f6f656249a9980, type: 3}
   <Description>k__BackingField: 
   <Width>k__BackingField: 1
-  <Height>k__BackingField: 2
+  <Height>k__BackingField: 1
