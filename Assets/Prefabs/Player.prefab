@@ -139,6 +139,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 7208542287481276244}
   _firecracker: {fileID: 1078556837471056940, guid: 0e7b15591558cc94a8e089461638d0da, type: 3}
   _dogTreat: {fileID: 1078556837471056940, guid: dbb1119e63b52f3418f8e154548eb9d1, type: 3}
+  _crowbarRadius: 1.2
 --- !u!1 &8368892319001436238
 GameObject:
   m_ObjectHideFlags: 0
