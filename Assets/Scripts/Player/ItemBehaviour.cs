@@ -10,9 +10,26 @@ public class ItemBehaviour : MonoBehaviour
     [SerializeField] private GameObject _firecracker;
     [SerializeField] private GameObject _dogTreat;
     [SerializeField] private float _crowbarRadius = 0.55f;
-    private void Update()
+    public void UseItem(ItemInfo item)
     {
-        
+        switch (item.Type)
+        {
+            case ItemTypes.Throwing:
+                if (item.StunEnemyType == EnemyType.Guard)
+                    ThrowFirecracker();
+                else if (item.StunEnemyType == EnemyType.Dog)
+                    ThrowDogTreat();
+                break;
+            case ItemTypes.Prybars:
+                UseCrowbar();
+                break;
+            case ItemTypes.Camera:
+                // Camera use logic here
+                break;
+            default:
+                Debug.LogWarning("Item type not recognized for use.");
+                break;
+        }
     }
 
     [Button(enabledMode: EButtonEnableMode.Playmode)]

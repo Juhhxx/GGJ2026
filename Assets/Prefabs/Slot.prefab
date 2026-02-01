@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 90}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4626463136026548318
 CanvasRenderer:
@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 2124280060191910703}
   - component: {fileID: 1547803125737696844}
   - component: {fileID: 5282196927477583435}
-  - component: {fileID: 5155214210060070096}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -152,15 +151,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5155214210060070096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2959266107587859262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51812e4b9f288324baf765fb100e452b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridCell

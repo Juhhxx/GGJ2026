@@ -9,15 +9,9 @@ public class ItemInfo : ScriptableObject
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public Sprite Sprite { get; private set; }
 
-    [field: SerializeField] public int StackMaximum { get; private set; }
-
     [field: SerializeField] public ItemTypes Type { get; private set; }
-    [field: SerializeField] public bool IsConsumable { get; private set; }
 
     [field: SerializeField] public bool DoesStun { get; private set; }
-
-    [field: ShowIf("DoesStun")]
-    [field: SerializeField] public float StunDuration { get; private set; }
 
     [field: ShowIf("DoesStun")]
     [field: SerializeField] public EnemyType StunEnemyType { get; private set; }

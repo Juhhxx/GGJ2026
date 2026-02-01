@@ -35,6 +35,9 @@ public class EnemyBrain : MonoBehaviour
 
     private Transform _target;
     [SerializeField] private float _detectionRadius = 5f;
+
+    private Animator _anim;
+
     public void Start()
     {
         _patrolMovement = GetComponent<EnemyPatrolMovement>();
@@ -43,6 +46,8 @@ public class EnemyBrain : MonoBehaviour
         _target = FindAnyObjectByType<PlayerMovement>()?.transform;
         _timer = new Timer(1, Timer.TimerReset.Manual);
         _timer.OnTimerDone += () => _isStunned = false;
+
+        _anim = GetComponent<Animator>();
     }
     public void Stun(float stunTime)
     {
@@ -88,6 +93,9 @@ public class EnemyBrain : MonoBehaviour
         DrawWireArc(transform.position, Direction, _fovAngle, _fov, Color.green);
         DrawWireArc(transform.position, Direction, 360, _detectionRadius, Color.blue);
         Debug.DrawRay(transform.position, Direction, Color.red);
+
+        _anim.SetFloat("SpeedX",  Direction.x * Speed);
+        if (Speed > 0) _anim.SetFloat("DirX",  Direction.x);
     }
     private void DrawWireArc(Vector3 position, Vector3 dir, float anglesRange, float radius, Color color, float maxSteps = 20)
     {
