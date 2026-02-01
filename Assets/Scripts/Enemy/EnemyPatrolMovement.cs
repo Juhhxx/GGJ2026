@@ -136,6 +136,7 @@ public class EnemyPatrolMovement : MonoBehaviour, IMovementType
 
     public void ResetMovement()
     {
-        _rb.linearVelocity = Vector3.zero;
+        if (_space == Space.TwoD) _rb2D.linearVelocity = Vector3.zero;
+        else _rb.linearVelocity = Vector3.zero;
     }
 }

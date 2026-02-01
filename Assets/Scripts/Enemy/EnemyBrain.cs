@@ -9,6 +9,10 @@ public class EnemyBrain : MonoBehaviour
     [Range(0, 360)] [SerializeField] private float _fovAngle;
     private EnemyPatrolMovement _patrolMovement;
     private IMovementType _activeMovement;
+    [SerializeField] private bool _isStunned = false;
+    [SerializeField] private EnemyType _enemyType;
+    public EnemyType EnemyType => _enemyType;
+    private Timer _timer;
     private IMovementType ActiveMovement
     {
         get => _activeMovement;
@@ -24,7 +28,6 @@ public class EnemyBrain : MonoBehaviour
             _activeMovement = value;
         }
     }
-
     public Vector3 Direction => ActiveMovement.Direction;
     public float Speed => ActiveMovement.Speed;
 
@@ -32,15 +35,21 @@ public class EnemyBrain : MonoBehaviour
 
     private Transform _target;
     [SerializeField] private float _detectionRadius = 5f;
-
     public void Start()
     {
         _patrolMovement = GetComponent<EnemyPatrolMovement>();
         ActiveMovement = _patrolMovement;
 
         _target = FindAnyObjectByType<PlayerMovement>()?.transform;
+        _timer = new Timer(1, Timer.TimerReset.Manual);
+        _timer.OnTimerDone += () => _isStunned = false;
     }
-
+    public void Stun(float stunTime)
+    {
+        _isStunned = true;
+        _timer.setNewMax(stunTime);
+        _timer.ResetTimer();
+    }
     private bool DetectPlayer()
     {
         float signedAngle = Vector3.Angle(Direction, _target.position - transform.position);
@@ -66,8 +75,16 @@ public class EnemyBrain : MonoBehaviour
 
     private void Update()
     {
-        ActiveMovement.Move();
-        BrainLogic();
+        if (!_isStunned)
+        {
+            ActiveMovement.Move();
+            BrainLogic();
+        }
+        else 
+        {
+            ActiveMovement.ResetMovement();
+            _timer.CountTimer();
+        }
         DrawWireArc(transform.position, Direction, _fovAngle, _fov, Color.green);
         DrawWireArc(transform.position, Direction, 360, _detectionRadius, Color.blue);
         Debug.DrawRay(transform.position, Direction, Color.red);
