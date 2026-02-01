@@ -83,8 +83,9 @@ public class EnemyPatrolMovement : MonoBehaviour, IMovementType
 
     private void CheckIfReached()
     {
-        if (Vector3.Distance(transform.position, _path.GetCurrentWaypoint()) <= 0.15f)
+        if (Vector3.Distance(transform.position, _path.GetCurrentWaypoint()) <= 0.1f)
         {
+            transform.position = _path.GetCurrentWaypoint();
             if (_stopAtWaypoints) StartCoroutine(UpdateDirectionCR());
             else UpdateDirection();
 
