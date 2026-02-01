@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class ThrowableItem : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb2D;
     [SerializeField] private Vector2 _impulseStrength = new Vector2 (5, 5);
     [SerializeField] private EnemyType _enemyType;
+    [SerializeField] private List<ParticleSystem> parSys;
     [SerializeField] private float _stunRadius = 2.5f;
     [SerializeField] private float _stunTime = 2f;
     public void InitialImpulse(Vector2 throwDirection)
@@ -21,6 +23,7 @@ public class ThrowableItem : MonoBehaviour
         yield return new WaitUntil(() => _rb2D.linearVelocity.magnitude <= 0.20f);
         Debug.Log("Reached Velocity 0");
         CheckStunRadius();
+        foreach (ParticleSystem ps in parSys) ps.Play();
         yield return new WaitForSecondsRealtime(_stunTime);
         Destroy(gameObject);
     }
